@@ -3,7 +3,7 @@
 namespace Website_Backend.Controllers;
 
 [ApiController]
-[Route("api/")]
+[Route("api/[controller]")]
 public class PersonController : ControllerBase
 {
     private readonly ILogger<Person> _logger;
@@ -27,7 +27,7 @@ public class PersonController : ControllerBase
     }
 
     // Get a person by an id
-    [HttpGet("{id}")]
+    [HttpGet("{Id}")]
     public ActionResult<Person> GetPersonById(int Id)
     {
         return Ok(people.FirstOrDefault(p => p.Id == Id));
