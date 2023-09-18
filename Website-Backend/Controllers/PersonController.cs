@@ -19,18 +19,21 @@ public class PersonController : ControllerBase
         _logger = logger;
     }
 
+    // Get a default person created in the model
     [HttpGet("GetPerson")]
     public ActionResult<Person> Get()
     {
         return Ok(people[0]);
     }
 
-    [HttpGet("GetPersonById")]
+    // Get a person by an id
+    [HttpGet("{id}")]
     public ActionResult<Person> GetPersonById(int Id)
     {
         return Ok(people.FirstOrDefault(p => p.Id == Id));
     }
 
+    // Get a list of people created in the people object
     [HttpGet("GetPeople")]
     public ActionResult<List<Person>> GetPeople()
     {
