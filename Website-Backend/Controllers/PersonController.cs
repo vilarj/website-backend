@@ -6,38 +6,39 @@ namespace Website_Backend.Controllers;
 [Route("api/[controller]")]
 public class PersonController : ControllerBase
 {
-    private readonly ILogger<Person> _logger;
-    private static List<Person> people = new List<Person>
-    {
-        new Person(),
-        new Person(1, "Abel", "Marte", "01-01-2000"),
-        new Person(2, "Tony", "Montana", "01-01-2000"),
-    };
+    private readonly IPersonService _personService;
 
-    public PersonController(ILogger<Person> logger)
+    public PersonController(IPersonService PersonService)
     {
-        _logger = logger;
+        _personService = PersonService;
     }
 
     // Get a default person created in the model
     [HttpGet("GetPerson")]
     public ActionResult<Person> Get()
     {
-        return Ok(people[0]);
+        return Ok(_personService.GetPerson());
     }
 
     // Get a person by an id
     [HttpGet("{Id}")]
     public ActionResult<Person> GetPersonById(int Id)
     {
-        return Ok(people.FirstOrDefault(p => p.Id == Id));
+        return Ok(_personService.GetPersonById(Id));
     }
 
     // Get a list of people created in the people object
     [HttpGet("GetPeople")]
     public ActionResult<List<Person>> GetPeople()
     {
-        return Ok(people);
+        return Ok(_personService.GetPeople());
+    }
+
+    [HttpPost]
+    public ActionResult <List<Person>> CreatePerson(Person newPerson)
+    {
+        
+        return Ok(_personService.CreatePerson(newPerson));
     }
 }
 
