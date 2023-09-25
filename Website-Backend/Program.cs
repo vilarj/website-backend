@@ -1,4 +1,6 @@
 ﻿global using Website_Backend.Services;
+global using Website_Backend.Models;
+global using Website_Backend.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 

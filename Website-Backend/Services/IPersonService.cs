@@ -3,13 +3,13 @@ namespace Website_Backend.Services
 {
 	public interface IPersonService
 	{
-		public Person GetPerson();
+		public Task<ServiceResponse<Person>> GetPerson();
 
-		public Person GetPersonById(int Id);
+		public Task<ServiceResponse<Person>> GetPersonById(int Id);
 
-		public List<Person> GetPeople();
+		public Task<ServiceResponse<List<Person>>> GetPeople();
 
-		public List<Person> CreatePerson(Person newPerson);
+		public Task<ServiceResponse<List<Person>>> CreatePerson(Person newPerson);
     }
 }
 

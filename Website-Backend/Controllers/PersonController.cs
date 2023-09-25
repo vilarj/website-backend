@@ -15,30 +15,30 @@ public class PersonController : ControllerBase
 
     // Get a default person created in the model
     [HttpGet("GetPerson")]
-    public ActionResult<Person> Get()
+    public async Task<ActionResult<ServiceResponse<Person>>> Get()
     {
-        return Ok(_personService.GetPerson());
+        return Ok(await _personService.GetPerson());
     }
 
     // Get a person by an id
     [HttpGet("{Id}")]
-    public ActionResult<Person> GetPersonById(int Id)
+    public async Task<ActionResult<ServiceResponse<Person>>> GetPersonById(int Id)
     {
-        return Ok(_personService.GetPersonById(Id));
+        return Ok(await _personService.GetPersonById(Id));
     }
 
     // Get a list of people created in the people object
     [HttpGet("GetPeople")]
-    public ActionResult<List<Person>> GetPeople()
+    public async Task<ActionResult<ServiceResponse<List<Person>>>> GetPeople()
     {
-        return Ok(_personService.GetPeople());
+        return Ok(await _personService.GetPeople());
     }
 
     [HttpPost]
-    public ActionResult <List<Person>> CreatePerson(Person newPerson)
+    public async Task<ActionResult<ServiceResponse<List<Person>>>> CreatePerson(Person newPerson)
     {
         
-        return Ok(_personService.CreatePerson(newPerson));
+        return Ok(await _personService.CreatePerson(newPerson));
     }
 }
 

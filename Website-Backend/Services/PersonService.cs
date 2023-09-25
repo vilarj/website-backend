@@ -11,32 +11,41 @@ namespace Website_Backend.Services
         new Person{Id = 2, First = "Tony", Last = "Montana", Dob = "01-01-2000"},
         };
 
-        public List<Person> CreatePerson(Person newPerson)
+        public async Task<ServiceResponse<List<Person>>> CreatePerson(Person newPerson)
         {
+            var serviceResponse = new ServiceResponse<List<Person>>();
             people.Add(newPerson);
-            return people;
+            serviceResponse.Data = people;
+
+            return serviceResponse;
         }
 
-        public Person GetPerson()
+        public async Task<ServiceResponse<Person>> GetPerson()
         {
-            return people[0];
+            var serviceResponse = new ServiceResponse<Person>();
+
+            serviceResponse.Data = people[0];
+
+            return serviceResponse;
         }
 
-        public List<Person> GetPeople()
+        public async Task<ServiceResponse<List<Person>>> GetPeople()
         {
-            return people;
+            var serviceResponse = new ServiceResponse<List<Person>>();
+            serviceResponse.Data = people;
+
+            return serviceResponse;
         }
 
-        public Person GetPersonById(int Id)
+        public async Task<ServiceResponse<Person>> GetPersonById(int Id)
         {
             var person = people.FirstOrDefault(p => p.Id == Id);
 
-            if (person != null)
-            {
-                return person;
-            }
 
-            throw new Exception("Person not found");
+            var serviceResponse = new ServiceResponse<Person>();
+            serviceResponse.Data = person;
+
+            return serviceResponse;
         }
     }
 }
