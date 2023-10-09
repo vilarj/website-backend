@@ -1,9 +1,8 @@
-﻿using System;
-
-namespace Website_Backend.Services
+﻿namespace Website_Backend.Services
 {
-	public class PersonService : IPersonService
+    public class PersonService : IPersonService
 	{
+
         private static List<Person> people = new List<Person>
         {
         new Person(),
@@ -46,6 +45,17 @@ namespace Website_Backend.Services
             serviceResponse.Data = person;
 
             return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<Person>> UpdatePerson(Person personToBeUpdated)
+        {
+            var ServiceResponse = new ServiceResponse<Person>();
+            var person = people.FirstOrDefault(p => p.Id == personToBeUpdated.Id);
+
+            person.First = personToBeUpdated.First;
+            person.Last = personToBeUpdated.Last;
+
+            return ServiceResponse;
         }
     }
 }

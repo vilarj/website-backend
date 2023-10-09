@@ -34,11 +34,18 @@ public class PersonController : ControllerBase
         return Ok(await _personService.GetPeople());
     }
 
+    // Add a new person
     [HttpPost]
     public async Task<ActionResult<ServiceResponse<List<Person>>>> CreatePerson(Person newPerson)
     {
-        
         return Ok(await _personService.CreatePerson(newPerson));
+    }
+
+    // Update first and last of a person
+    [HttpPut]
+    public async Task<ActionResult<ServiceResponse<Person>>> UpdatePerson(Person personToBeUpdated)
+    {
+        return Ok(await _personService.UpdatePerson(personToBeUpdated));
     }
 }
 
