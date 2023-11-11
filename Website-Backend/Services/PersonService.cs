@@ -59,12 +59,14 @@
             return ServiceResponse;
         }
 
-        public async Task<ServiceResponse<Person>> DeletePerson(Person personToBeDeleted)
+        public async Task<ServiceResponse<Person>> DeletePerson(int Id)
         {
             var ServiceResponse = new ServiceResponse<Person>();
-            var person = people.First(p => p.Id == personToBeDeleted.Id) ?? throw new Exception($"person with {personToBeDeleted.Id} was not found");
+            var person = people.First(p => p.Id == Id) ?? throw new Exception($"person with {Id} was not found");
 
-            // Need to remove the person
+            people.Remove(person);
+            ServiceResponse.Data = person;
+
             return ServiceResponse;
         }
     }

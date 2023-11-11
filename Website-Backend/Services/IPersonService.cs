@@ -18,7 +18,7 @@
 		public Task<ServiceResponse<Person>> UpdatePerson(Person personToBeUpdated);
 
 		// DELETE a person
-		public Task<ServiceResponse<Person>> DeletePerson(Person personToBeDeleted);
+		public Task<ServiceResponse<Person>> DeletePerson(int Id);
     }
 }
 

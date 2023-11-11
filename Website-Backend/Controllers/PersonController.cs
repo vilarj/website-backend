@@ -53,5 +53,18 @@ public class PersonController : ControllerBase
         }
         return Ok(response);
     }
+
+    // Delete a person given an Id
+    [HttpDelete("Id")]
+    public async Task<ActionResult<ServiceResponse<Person>>> DeletePerson(int Id)
+    {
+        var response = await _personService.DeletePerson(Id);
+
+        if (response.Data is null)
+        {
+            return NotFound(response);
+        }
+        return Ok(response);
+    }
 }
 
