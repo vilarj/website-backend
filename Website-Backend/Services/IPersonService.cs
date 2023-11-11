@@ -16,6 +16,9 @@
 
 		// PUT a person's first and last name
 		public Task<ServiceResponse<Person>> UpdatePerson(Person personToBeUpdated);
+
+		// DELETE a person
+		public Task<ServiceResponse<Person>> DeletePerson(Person personToBeDeleted);
     }
 }
 

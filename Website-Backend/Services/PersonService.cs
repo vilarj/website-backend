@@ -5,14 +5,15 @@
 
         private static List<Person> people = new List<Person>
         {
-        new Person(),
-        new Person {Id = 1, First = "Abel", Last = "Marte", Dob = "01-01-2000" },
-        new Person{Id = 2, First = "Tony", Last = "Montana", Dob = "01-01-2000"},
+            new Person(),
+            new Person {Id = 1, First = "Abel", Last = "Marte", Dob = "01-01-2000" },
+            new Person{Id = 2, First = "Tony", Last = "Montana", Dob = "01-01-2000"},
         };
 
         public async Task<ServiceResponse<List<Person>>> CreatePerson(Person newPerson)
         {
             var serviceResponse = new ServiceResponse<List<Person>>();
+
             people.Add(newPerson);
             serviceResponse.Data = people;
 
@@ -50,11 +51,20 @@
         public async Task<ServiceResponse<Person>> UpdatePerson(Person personToBeUpdated)
         {
             var ServiceResponse = new ServiceResponse<Person>();
-            var person = people.FirstOrDefault(p => p.Id == personToBeUpdated.Id);
+            var person = people.FirstOrDefault(p => p.Id == personToBeUpdated.Id) ?? throw new Exception($"person with {personToBeUpdated.Id} was not found");
 
             person.First = personToBeUpdated.First;
             person.Last = personToBeUpdated.Last;
 
+            return ServiceResponse;
+        }
+
+        public async Task<ServiceResponse<Person>> DeletePerson(Person personToBeDeleted)
+        {
+            var ServiceResponse = new ServiceResponse<Person>();
+            var person = people.First(p => p.Id == personToBeDeleted.Id) ?? throw new Exception($"person with {personToBeDeleted.Id} was not found");
+
+            // Need to remove the person
             return ServiceResponse;
         }
     }

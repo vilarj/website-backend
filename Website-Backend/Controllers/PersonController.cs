@@ -45,7 +45,13 @@ public class PersonController : ControllerBase
     [HttpPut]
     public async Task<ActionResult<ServiceResponse<Person>>> UpdatePerson(Person personToBeUpdated)
     {
-        return Ok(await _personService.UpdatePerson(personToBeUpdated));
+        var response = await _personService.UpdatePerson(personToBeUpdated);
+
+        if (response.Data is null)
+        {
+            return NotFound(response);
+        }
+        return Ok(response);
     }
 }
 
