@@ -55,7 +55,7 @@ public class PersonController : ControllerBase
     }
 
     // Delete a person given an Id
-    [HttpDelete("Id")]
+    [HttpDelete("{Id}")]
     public async Task<ActionResult<ServiceResponse<Person>>> DeletePerson(int Id)
     {
         var response = await _personService.DeletePerson(Id);
