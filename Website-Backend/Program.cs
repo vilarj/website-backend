@@ -1,14 +1,15 @@
-﻿global using Website_Backend.Services;
+﻿global using Microsoft.EntityFrameworkCore;
+global using Website_Backend.Services;
 global using Website_Backend.Models;
-global using Microsoft.EntityFrameworkCore;
 global using Website_Backend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
