@@ -5,9 +5,9 @@
 
         private static List<Person> people = new List<Person>
         {
-            new Person(),
-            new Person {Id = 1, First = "Abel", Last = "Marte", Dob = "01-01-2000" },
-            new Person{Id = 2, First = "Tony", Last = "Montana", Dob = "01-01-2000"},
+            new(),
+            new() {Id = 1, First = "Abel", Last = "Marte", Dob = "01-01-2000" },
+            new() {Id = 2, First = "Tony", Last = "Montana", Dob = "01-01-2000"},
         };
 
         public async Task<ServiceResponse<List<Person>>> CreatePerson(Person newPerson)
